@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .scene {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background: #01070a;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .scene i {
+        position: absolute;
+        top: -250px;
+        background: rgba(255, 255, 255, 0.5);
+        animation: animateStars linear infinite;
+      }
+      @keyframes animateStars {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(200vh);
+        }
+      }
+      .scene .rocket {
+        position: relative;
+        animation: animate 0.2s ease infinite;
+      }
+      @keyframes animate {
+        0%,
+        100% {
+          transform: translateY(-2px);
+        }
+        50% {
+          transform: translateY(2px);
+        }
+      }
+      .scene .rocket::before,
+      .scene .rocket::after {
+        content: "";
+        position: absolute;
+        bottom: -200px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 200px;
+        background: linear-gradient(#00d0ff, transparent);
+      }
+      .scene .rocket::after {
+        filter: blur(20px);
+      }
+      /* Estilos para centrar el temporizador en la página */
+      body,
+      html {
+        background-color: black; /* Cambia el color de fondo a negro */
+        color: white; /* Cambia el color del texto a blanco */
+      }
+      .contenedor {
+        text-align: center;
+      }
+
+      /* Estilos para el temporizador */
+      #temporizador {
+        font-size: 70px; /* Ajusta el tamaño de la letra según tu preferencia */
+      }
+      /* Estilos para la barra de progreso */
+      .barra {
+        width: 100%; /* Ajusta el ancho de la barra de progreso */
+        height: 10px;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.3
+        ); /* Color de fondo semitransparente */
+        margin-top: 10px;
+      }
+
+      .progreso {
+        height: 100%;
+        width: 0;
+        background-color: white; /* Color de la barra de progreso */
+      }
+      /* Estilos para la palabra cambiante */
+      #palabras {
+        font-size: 36px; /* Ajusta el tamaño de la letra según tu preferencia */
+        margin-bottom: 20px; /* Agrega un margen inferior para separar la palabra de la barra de progreso */
+      }
+    </style>
+    <title>Cargando...</title>
+  </head>
+
+  <body>
+    <div class="contenedor">
+      <div id="temporizador">Cargando <span id="tiempo-restante"></span></div>
+      <div class="barra">
+        <div class="progreso" id="barra-progreso"></div>
+      </div>
+    </div>
+
+    <div class="contenedor">
+      <div id="palabras">Palabra Cambiante</div>
+    </div>
+
+    <div class="scene">
+      <div class="rocket">
+        <img
+          src="https://cdn.discordapp.com/attachments/1154442244472963224/1154451527277232261/rocket.png"
+        />
+      </div>
+    </div>
+    <script>
+      function stars() {
+        let count = 50;
+        let scene = document.querySelector(".scene");
+        let i = 0;
+        while (i < count) {
+          let star = document.createElement("i");
+          let x = Math.floor(Math.random() * window.innerWidth);
+
+          let duration = Math.random() * 1;
+          let h = Math.random() * 100;
+
+          star.style.left = x + "px";
+          star.style.width = 1 + "px";
+          star.style.height = 50 + h + "px";
+          star.style.animationDuration = duration + "s";
+
+          scene.appendChild(star);
+          i++;
+        }
+      }
+      stars();
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Generar un tiempo aleatorio entre 10 y 60 segundos
+        const tiempoMinimo = 1; // Tiempo mínimo en segundos
+        const tiempoMaximo = 20; // Tiempo máximo en segundos
+        const tiempoTotal =
+          Math.floor(Math.random() * (tiempoMaximo - tiempoMinimo + 1)) +
+          tiempoMinimo;
+
+        let tiempoRestante = tiempoTotal;
+
+        // Elemento donde se mostrará el tiempo restante
+        const tiempoRestanteElemento =
+          document.getElementById("tiempo-restante");
+
+        // Función para actualizar el tiempo restante en la página
+        function actualizarTiempoRestante() {
+          tiempoRestanteElemento.textContent = tiempoRestante + " segundos";
+        }
+
+        // Función que se ejecuta cada segundo
+        const interval = setInterval(function () {
+          tiempoRestante--;
+          actualizarTiempoRestante();
+
+          const porcentajeCompletado =
+            ((tiempoTotal - tiempoRestante) / tiempoTotal) * 100;
+          const barraProgreso = document.getElementById("barra-progreso");
+          barraProgreso.style.width = porcentajeCompletado + "%";
+
+          if (tiempoRestante === 0) {
+            clearInterval(interval); // Detener el intervalo cuando el tiempo llega a cero
+            window.location.href = "main.html"; // Cambia "otra_pagina.html" a la URL de la página a la que deseas redirigir
+          }
+        }, 1000); // Intervalo de 1 segundo
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const palabrasElemento = document.getElementById("palabras");
+        const palabrasCambiantes = [
+          "Sabías que: Floppa se cansó de ser inútil y decidió tener comandos divertidos",
+          "Sabías que: Una vez Floppa encontró una moneda y decidió crear un sistema de economía",
+          "Sabías que: Una vez Floppa fue una IA mal programada",
+          "Sabías que: Floppa una vez spameó menciones tanto que lo tuvieron que apagar",
+          "Sabías que: Floppa tuvo miedo por presentarse a todos los usuarios",
+          "Sabías que: Esta página web fue mejorada por Jotalea"
+        ]; // Agrega tus palabras o frases
+
+        function cambiarPalabraAleatoria() {
+          const indiceAleatorio = Math.floor(
+            Math.random() * palabrasCambiantes.length
+          );
+          palabrasElemento.textContent = palabrasCambiantes[indiceAleatorio];
+        }
+
+        cambiarPalabraAleatoria(); // Cambia la palabra inicial
+
+        const intervalCambioPalabra = setInterval(
+          cambiarPalabraAleatoria,
+          5000
+        ); // Cambia cada 5 segundos
+      });
+    </script>
+  </body>
+</html>

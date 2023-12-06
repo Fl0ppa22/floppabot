@@ -1,0 +1,299 @@
+/* Estilos para la página principal */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #23272a; /* Cambia el color de fondo de la página */
+    color: white; /* Cambia el color del texto */
+    overflow: auto; /* Habilita el scroll vertical y horizontal cuando sea necesario */
+}
+
+header, nav, footer {
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+/* Estilos para las secciones */
+#bot-description h2, #bot-features h2, #bot-invite h2 {
+    color: #0e0e0e;
+}
+
+#bot-description p, #bot-features ul, #bot-invite p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+}
+
+#bot-features ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.bot-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5em;
+}
+
+.bot-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para el botón de invitación centrado */
+.center-button {
+    display: flex;
+    justify-content: center;
+    padding: 10px
+}
+
+.invite-bot-button {
+    display: inline-block;
+    background-color: #000000;
+    color: white;
+    width: 60%;
+    padding: 10px 0; /* Elimina el padding horizontal y ajusta verticalmente */
+    text-align: center; /* Centra el texto horizontalmente */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.invite-bot-button:hover {
+    background-color: #B5B2B2;
+}
+
+.invite-server-button {
+    display: inline-block;
+    background-color: #000000;
+    color: white;
+    width: 60%;
+    padding: 10px; /* Elimina el padding horizontal y ajusta verticalmente */
+    text-align: center; /* Centra el texto horizontalmente */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.invite-server-button:hover {
+    background-color: #B5B2B2;
+}
+
+/* Estilos para la sección de la imagen */
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    width: 150px; /* Ajusta el tamaño del círculo */
+    height: 150px; /* Ajusta el tamaño del círculo */
+    border-radius: 50%; /* Hace que el círculo */
+    margin: 0 auto; /* Centra horizontalmente */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+.zoom-image {
+    transition: transform 0.3s ease-in-out;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.image-info {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    position: absolute;
+    bottom: -100%; /* Inicialmente oculto */
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    transition: bottom 0.3s ease-in-out;
+}
+
+.image-container:hover .zoom-image {
+    transform: scale(1.1);
+}
+
+.image-container:hover .image-info {
+    bottom: 0; /* Mostrar el texto al pasar el mouse */
+}
+
+/* Estilos para el botón de mostrar/ocultar características */
+.show-button {
+    background-color: #2c2f33;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.show-button:hover {
+    background-color: #99aab5;
+}
+
+/* Animación para aparecer gradualmente las letras */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feature-list.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Estilos para la sección de características */
+#features-section h2 {
+    color: #ffffff;
+}
+
+/* Estilos para el botón de mostrar/ocultar características */
+#show-button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#show-button:hover {
+    background-color: #979797;
+}
+
+/* Estilos para la sección de comandos */
+#commands-section h2 {
+    color: #ffffff;
+}
+
+#commands-list {
+    display: none;
+    border: 2px solid #ffffff; /* Agregamos un borde alrededor de la lista */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    background-color: rgb(0, 0, 0); /* Fondo semitransparente para el contenido */
+}
+
+h1, h2, p {
+    background-color: rgb(0, 0, 0); /* Fondo semitransparente para los encabezados y párrafos */
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+/* Agrega un fondo más pequeño a la sección bot-description-text */
+.bot-description-text {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para la sección */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.bot-description-text::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background-color: rgba(255, 255, 255, 0.062); /* Fondo más pequeño con transparencia */
+    z-index: -1;
+    border-radius: 15px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+i {
+    position: absolute;
+    
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: inset 0 -1px 1px rgb(114, 114, 114);
+    top: -10px;
+    animation: nieve linear infinite;
+}
+
+@keyframes nieve {
+    0% {
+        top: -10px;
+    }
+    100% {
+        top: calc(100vh + 50px);
+    }
+}
+
+.circulo, .cuadrado {
+    position: absolute;
+    background-color: white;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  
+  .circulo {
+    border-radius: 50%;
+  }
+  
+  .cuadrado::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: white;
+  }
